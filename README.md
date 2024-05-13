@@ -31,16 +31,99 @@ Logic Diagram :
 
 ![image](https://github.com/navaneethans/VLSI-LAB-EXP-5/assets/6987778/34ec5d63-2b3b-4511-81ef-99f4572d5869)
 
+FINITE STATE MACHINE
+```
+module fsm_moore( clk, rst, inp, outp);
 
-VERILOG CODE:
+input clk, rst, inp;
 
-----Type Verilog Code
+output outp;
 
+reg [1:0] state;
+
+reg outp;
+
+always @(posedge clk, posedge rst)
+
+begin
+
+if(rst)
+
+state<=2'b00;
+
+else
+
+begin
+
+case(state)
+
+2'b00:
+
+begin
+
+if(inp) state <=2'b01;
+
+
+
+else state <=2'b10;
+end
+
+2'b01:
+
+begin
+
+if (inp) state <=2'b11;
+else state<=2'b10;
+end
+
+2'b10:
+begin
+if (inp) state<=2'b01;
+else state <=2'b11;
+end
+
+2'b11:
+
+begin
+
+if (inp) state <=2'b01;
+else state <=2'b10;
+
+end
+
+endcase
+
+end
+
+end
+
+always @(posedge clk, posedge rst)
+
+begin
+
+if(rst)
+
+outp <= 0;
+
+else if(state == 2'b11)
+
+outp <= 1;
+
+else outp<= 0;
+
+end
+
+endmodule
+```
 OUTPUT:
 
------Place a Waveform Generated from Xilinx ISE------------
+SIMULATION:
+![image](https://github.com/Hariharan177/VLSI-LAB-EXP-5/assets/164841000/088ca3f7-7a87-4df6-9561-121153b50369)
+
+ELABORATED DIAGRAM:
+![image](https://github.com/Hariharan177/VLSI-LAB-EXP-5/assets/164841000/85864dba-d4b9-4e27-af8f-cfe262387ee1)
 
 RESULT:
 
-
+Simulation And Synthesis Finite State Machine is Successfully Verified using Vivado Software.
 
